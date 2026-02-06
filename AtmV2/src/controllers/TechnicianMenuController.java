@@ -25,6 +25,7 @@ public class TechnicianMenuController {
             System.out.println("2. Add Paper");
             System.out.println("3. Add Ink");
             System.out.println("4. Update Firmware");
+            System.out.println("5. View ATM Status");
             System.out.println("0. Logout");
             System.out.print("Choose option: ");
 
@@ -35,6 +36,7 @@ public class TechnicianMenuController {
                 case "2" -> addPaper(atm);
                 case "3" -> addInk(atm);
                 case "4" -> updateFirmware(atm);
+                case "5" -> showStatus(atm);
                 case "0" -> { return; }
                 default -> System.out.println("Invalid option");
             }
@@ -124,5 +126,14 @@ public class TechnicianMenuController {
         atm.setFirmwareVersion(version);
         atmService.save();
         System.out.println("Firmware updated successfully.");
+    }
+
+    private void showStatus(ATM atm) {
+        System.out.println("\n=== ATM STATUS ===");
+        atm.printCash();
+        System.out.println("Total cash: " + atm.getTotalCash() + "€");
+        System.out.println("Paper: " + atm.getPaper());
+        System.out.println("Ink: " + atm.getInk());
+        System.out.println("Firmware: " + atm.getFirmwareVersion());
     }
 }
